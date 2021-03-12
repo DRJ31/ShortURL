@@ -8,16 +8,6 @@
   ],
   "app": {
     "threads_num": 0,
-    "document_root": "./",
-    "home_page": "index.html",
-    "simple_controllers_map": [
-      {
-        "path": "/test",
-        "controller": "shorturl::controller::TestCtrl",
-        "http_methods": [
-          "get"
-        ]
-      }
-    ]
+    "document_root": "./"
   }
 }

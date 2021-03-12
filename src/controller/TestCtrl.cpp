@@ -9,7 +9,7 @@ void TestCtrl::asyncHandleHttpRequest(const HttpRequestPtr &req,
     auto *snowFlake = new funcs::SnowFlake();
     resp->setStatusCode(k200OK);
     resp->setContentTypeCode(CT_TEXT_HTML);
-    resp->setBody(snowFlake->getSnowFlake() + "Hello");
+    resp->setBody(snowFlake->getSnowFlake());
     callback(resp);
 }
 }

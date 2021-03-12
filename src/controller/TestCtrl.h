@@ -13,7 +13,7 @@ public:
                                         std::function<void (const HttpResponsePtr &)>&&callback) override;
 
     PATH_LIST_BEGIN
-    PATH_ADD("/", Get);
+    PATH_ADD("/test", Get);
     PATH_LIST_END
 };
 }
