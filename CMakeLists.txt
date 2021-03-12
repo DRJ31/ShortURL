@@ -10,6 +10,9 @@ add_subdirectory(libs/drogon)
 add_subdirectory(src/funcs)
 add_subdirectory(src/controller)
 
+file(COPY etc/config.json DESTINATION ${CMAKE_BINARY_DIR})
+file(COPY static/index.html DESTINATION ${CMAKE_BINARY_DIR})
+
 add_executable(${PROJECT_NAME} ${SRC_DIR})
 target_link_libraries(${PROJECT_NAME} drogon funcs controller)
 
