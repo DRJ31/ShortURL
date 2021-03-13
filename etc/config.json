@@ -6,6 +6,17 @@
       "https": false
     }
   ],
+  "db_clients": [
+    {
+      "name": "",
+      "rdbms": "mysql",
+      "host": "127.0.0.1",
+      "port": 3306,
+      "dbname": "example",
+      "user": "test",
+      "passwd": "password"
+    }
+  ],
   "app": {
     "threads_num": 0,
     "document_root": "./"
