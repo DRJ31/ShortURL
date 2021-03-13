@@ -8,7 +8,7 @@ namespace shorturl {
 namespace funcs {
 class SnowFlake {
 public:
-    SnowFlake(long wokerId, long dataCenterId);
+    SnowFlake(long workerId, long dataCenterId);
     ~SnowFlake() = default;
 
     long nextId();
