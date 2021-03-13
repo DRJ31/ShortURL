@@ -1,5 +1,5 @@
-#ifndef SHORTURL_CONTROLLER_TESTCTRL_H
-#define SHORTURL_CONTROLLER_TESTCTRL_H
+#ifndef SHORTURL_CONTROLLER_GETURLCONTROLLER_H
+#define SHORTURL_CONTROLLER_GETURLCONTROLLER_H
 
 #include "drogon/HttpSimpleController.h"
 
@@ -7,7 +7,7 @@ using namespace drogon;
 
 namespace shorturl {
 namespace controller {
-class TestCtrl : public drogon::HttpSimpleController<TestCtrl> {
+class GetUrlController : public drogon::HttpSimpleController<GetUrlController> {
 public:
     virtual void asyncHandleHttpRequest(const HttpRequestPtr &req,
                                         std::function<void (const HttpResponsePtr &)>&&callback) override;
@@ -19,4 +19,4 @@ public:
 }
 }
 
-#endif //SHORTURL_CONTROLLER_TESTCTRL_H
+#endif //SHORTURL_CONTROLLER_GETURLCONTROLLER_H
