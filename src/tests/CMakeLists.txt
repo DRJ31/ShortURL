@@ -1,6 +1,7 @@
 add_executable(BaseConvertTest BaseConvertUnitTest.cc)
+add_executable(SnowFlakeTest SnowFlakeUnitTest.cc)
 
-set(UNITTEST_TARGETS BaseConvertTest)
+set(UNITTEST_TARGETS BaseConvertTest SnowFlakeTest)
 
 foreach(T ${UNITTEST_TARGETS})
     target_include_directories(${T} PRIVATE ../)
