@@ -10,6 +10,7 @@ class SnowFlake {
 public:
     SnowFlake(long wokerId, long dataCenterId);
     ~SnowFlake() = default;
+
     long nextId();
 
 private:
