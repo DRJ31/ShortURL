@@ -1,7 +1,6 @@
 #include "drogon/HttpAppFramework.h"
-#include "controller/TestCtrl.h"
+#include "controller/GetUrlController.h"
 
-using namespace shorturl::controller;
 
 int main() {
     drogon::app().loadConfigFile("./config.json");
