@@ -9,9 +9,9 @@
 namespace shorturl {
 namespace funcs {
 namespace BaseConvert {
-std::string base64Encode(std::string str);
+std::string base64Encode(const std::string& str);
 
-std::string base64Decode(std::string str);
+std::string base64Decode(const std::string& str);
 
 template <typename T>
 std::string decToBase62(T num) {

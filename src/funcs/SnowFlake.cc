@@ -9,7 +9,7 @@ namespace shorturl {
 namespace funcs {
 SnowFlake::SnowFlake(long workerId, long dataCenterId) {
     char message[BUFSIZE];
-    const char *strFormat = "%s should not be more than %ld or less than 0.";
+    const char* strFormat = "%s should not be more than %ld or less than 0.";
     if (workerId > maxWorkerId || workerId < 0) {
         std::sprintf(message, strFormat, "WorkerID", maxWorkerId);
         throw std::out_of_range(message);

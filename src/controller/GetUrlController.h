@@ -15,7 +15,7 @@ public:
     virtual void asyncHandleHttpRequest(const HttpRequestPtr &req,
                                         std::function<void (const HttpResponsePtr &)>&&callback) override;
 
-    std::string getShortUrl(std::string url);
+    std::string getShortUrl(const std::string& url);
 
     PATH_LIST_BEGIN
     PATH_ADD("/short", Post);

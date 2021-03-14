@@ -14,7 +14,7 @@ void GetUrlController::asyncHandleHttpRequest(const HttpRequestPtr &req,
     const std::string host = req->getHeader("host");
 
     int returnCode = 0;
-    auto *parser = new MultiPartParser();
+    auto* parser = new MultiPartParser();
     Json::Value ret;
 
     if (parser->parse(req) == 0) {
@@ -41,9 +41,9 @@ void GetUrlController::asyncHandleHttpRequest(const HttpRequestPtr &req,
     callback(resp);
 }
 
-std::string GetUrlController::getShortUrl(std::string url) {
-    const char *queryFormat = "SELECT * FROM shorturl WHERE url='%s'";
-    const char *insertFormat = "INSERT INTO shorturl (abbreviation,url) VALUES ('%s','%s')";
+std::string GetUrlController::getShortUrl(const std::string& url) {
+    const char* queryFormat = "SELECT * FROM shorturl WHERE url='%s'";
+    const char* insertFormat = "INSERT INTO shorturl (abbreviation,url) VALUES ('%s','%s')";
     char querySql[BUFSIZE], insertSql[BUFSIZE];
     std::string dbInfo = funcs::Tools::getDbInfo(CONFIG_PATH);
 
@@ -52,7 +52,7 @@ std::string GetUrlController::getShortUrl(std::string url) {
     auto result = clientPtr->execSqlSync(querySql);
 
     if (result.empty()) {
-        auto *snowFlake = new funcs::SnowFlake(0, 0);
+        auto* snowFlake = new funcs::SnowFlake(0, 0);
         std::string shortUrl = funcs::BaseConvert::decToBase62(snowFlake->nextId());
         std::sprintf(insertSql, insertFormat, shortUrl.data(), url.data());
         clientPtr->execSqlSync(insertSql);

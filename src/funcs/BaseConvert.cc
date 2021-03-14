@@ -3,16 +3,17 @@
 namespace shorturl {
 namespace funcs {
 namespace BaseConvert {
-std::string base64Encode(std::string str) {
+std::string base64Encode(const std::string& str) {
     std::string binaryStr, result;
+    std::string::const_iterator cit;
     std::string::iterator it;
     int count = 0, idx = 0, tmp;
 
     // Construct binary string
-    it = str.begin();
-    while (it != str.end()) {
-        binaryStr += decToBinary(*it, 8);
-        it++;
+    cit = str.begin();
+    while (cit != str.end()) {
+        binaryStr += decToBinary(*cit, 8);
+        cit++;
     }
 
     // Convert binary string to Base64 string
@@ -51,21 +52,22 @@ std::string base64Encode(std::string str) {
     return result;
 }
 
-std::string base64Decode(std::string str) {
+std::string base64Decode(const std::string& str) {
     std::string binaryStr, result;
+    std::string::const_iterator cit;
     std::string::iterator it;
     int count = 0, ascii = 0, tmp, idx;
 
     // Get binary string of Base64 string
-    it = str.begin();
-    while (it != str.end() && *it != '=') {
+    cit = str.begin();
+    while (cit != str.end() && *cit != '=') {
         idx = 0;
         for (char ch : B64TABLE) {
-            if (ch == *it) break;
+            if (ch == *cit) break;
             idx++;
         }
         binaryStr += decToBinary(idx, 6);
-        it++;
+        cit++;
     }
 
     // Convert binary string to original string

@@ -9,9 +9,9 @@ std::string getDbInfo(const std::string& fileName) {
     std::ifstream is;
     Json::Value root;
     Json::Reader reader;
-    std::string host, port, dbname, user, passwd, result;
-    char out[BUFSIZE];
-    const char *format = "host= %s    port=%s dbname= %s user = %s password = %s  ";
+    std::string host, port, dbname, user, passwd;
+    char result[BUFSIZE];
+    const char* format = "host=%s port=%s dbname=%s user=%s password=%s";
 
     is.open(fileName, std::ios::binary);
     if (reader.parse(is, root)) {
@@ -22,8 +22,7 @@ std::string getDbInfo(const std::string& fileName) {
                 dbname = root["db_clients"][0]["dbname"].asString();
                 user = root["db_clients"][0]["user"].asString();
                 passwd = root["db_clients"][0]["passwd"].asString();
-                std::sprintf(out, format, host.data(), port.data(), dbname.data(), user.data(), passwd.data());
-                result = out;
+                std::sprintf(result, format, host.data(), port.data(), dbname.data(), user.data(), passwd.data());
                 return result;
             }
         }
