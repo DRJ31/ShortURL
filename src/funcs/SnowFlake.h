@@ -4,6 +4,7 @@
 #include <string>
 
 #define START_TIME_STAMP 1614556800000L // Start TimeStamp (2021-03-01)
+#define BUFSIZE 500 // Max length of char*
 
 namespace shorturl {
 namespace funcs {

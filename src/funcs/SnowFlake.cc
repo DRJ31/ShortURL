@@ -3,8 +3,6 @@
 #include <stdexcept>
 #include <chrono>
 
-#define BUFSIZE 500
-
 using namespace std::chrono;
 
 namespace shorturl {
