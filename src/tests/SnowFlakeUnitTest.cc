@@ -14,7 +14,7 @@ TEST(SnowFlakeTest, nextId) {
         id = snowFlakeIdWorker->nextId();
         std::cout << i << ". ";
         std::cout << "ID: " << id;
-        std::cout << " URL: " << BaseConvert<long>::decToBase62(id) << std::endl;
+        std::cout << " URL: " << BaseConvert::decToBase62(id) << std::endl;
     }
 }
 
