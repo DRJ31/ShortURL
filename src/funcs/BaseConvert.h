@@ -8,17 +8,9 @@
 
 namespace shorturl {
 namespace funcs {
+namespace BaseConvert {
 template <typename T>
-class BaseConvert {
-public:
-    static std::string decToBase62(T num);
-    static std::string decToBinary(T num, int bits);
-    static std::string base64Encode(std::string str);
-    static std::string base64Decode(std::string str);
-};
-
-template <typename T>
-std::string BaseConvert<T>::decToBase62(T num) {
+std::string decToBase62(T num) {
     int remainder;
     char ch;
     std::string result;
@@ -47,7 +39,7 @@ std::string BaseConvert<T>::decToBase62(T num) {
 }
 
 template <typename T>
-std::string BaseConvert<T>::decToBinary(T num, int bits) {
+std::string decToBinary(T num, int bits) {
     int remainder, count = 0;
     std::string result;
     std::stack<char> resultStack;
@@ -73,8 +65,7 @@ std::string BaseConvert<T>::decToBinary(T num, int bits) {
     return result;
 }
 
-template <typename T>
-std::string BaseConvert<T>::base64Encode(std::string str) {
+std::string base64Encode(std::string str) {
     std::string binaryStr, result;
     std::string::iterator it;
     int count = 0, idx = 0, tmp;
@@ -82,7 +73,7 @@ std::string BaseConvert<T>::base64Encode(std::string str) {
     // Construct binary string
     it = str.begin();
     while (it != str.end()) {
-        binaryStr += BaseConvert<char>::decToBinary(*it, 8);
+        binaryStr += decToBinary(*it, 8);
         it++;
     }
 
@@ -122,8 +113,7 @@ std::string BaseConvert<T>::base64Encode(std::string str) {
     return result;
 }
 
-template <typename T>
-std::string BaseConvert<T>::base64Decode(std::string str) {
+std::string base64Decode(std::string str) {
     std::string binaryStr, result;
     std::string::iterator it;
     int count = 0, ascii = 0, tmp, idx;
@@ -136,7 +126,7 @@ std::string BaseConvert<T>::base64Decode(std::string str) {
             if (ch == *it) break;
             idx++;
         }
-        binaryStr += BaseConvert<int>::decToBinary(idx, 6);
+        binaryStr += decToBinary(idx, 6);
         it++;
     }
 
@@ -162,6 +152,7 @@ std::string BaseConvert<T>::base64Decode(std::string str) {
         result += static_cast<char>(ascii);
     }
     return result;
+}
 }
 }
 }
