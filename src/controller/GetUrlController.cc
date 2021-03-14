@@ -1,17 +1,66 @@
 #include "GetUrlController.h"
+#include <cstdio>
+#include <map>
+#include "drogon/HttpAppFramework.h"
 #include "funcs/SnowFlake.h"
 #include "funcs/BaseConvert.h"
+#include "funcs/Tools.h"
+#include "config.h"
 
 namespace shorturl {
 namespace controller {
 void GetUrlController::asyncHandleHttpRequest(const HttpRequestPtr &req,
                                               std::function<void (const HttpResponsePtr &)> &&callback) {
-    auto resp = HttpResponse::newHttpResponse();
-    auto *snowFlake = new funcs::SnowFlake(0, 0);
-    resp->setStatusCode(k200OK);
-    resp->setContentTypeCode(CT_TEXT_HTML);
-    resp->setBody(funcs::BaseConvert<long>::decToBase62(snowFlake->nextId()));
+    const std::string host = req->getHeader("host");
+
+    int returnCode = 0;
+    auto *parser = new MultiPartParser();
+    Json::Value ret;
+
+    if (parser->parse(req) == 0) {
+        auto params = parser->getParameters();
+        std::map<std::string, std::string>::iterator iter;
+        for (iter = params.begin(); iter != params.end(); iter++) {
+            if (iter->first == "longUrl") {
+                returnCode = 1;
+                std::string url = funcs::BaseConvert::base64Decode(iter->second);
+                ret["ShortUrl"] = SCHEME + host + "/" + getShortUrl(url);
+                break;
+            }
+        }
+        if (!returnCode) {
+            ret["Message"] = "Invalid Request!";
+        }
+    }
+    else {
+        ret["Message"] = "Invalid Request!";
+    }
+
+    ret["Code"] = returnCode;
+    auto resp = HttpResponse::newHttpJsonResponse(ret);
     callback(resp);
+}
+
+std::string GetUrlController::getShortUrl(std::string url) {
+    const char *queryFormat = "SELECT * FROM shorturl WHERE url='%s'";
+    const char *insertFormat = "INSERT INTO shorturl (abbreviation,url) VALUES ('%s','%s')";
+    char querySql[BUFSIZE], insertSql[BUFSIZE];
+    std::string dbInfo = funcs::Tools::getDbInfo(CONFIG_PATH);
+
+    auto clientPtr = orm::DbClient::newMysqlClient(dbInfo, 1);
+    std::sprintf(querySql, queryFormat, url.data());
+    auto result = clientPtr->execSqlSync(querySql);
+
+    if (result.empty()) {
+        auto *snowFlake = new funcs::SnowFlake(0, 0);
+        std::string shortUrl = funcs::BaseConvert::decToBase62(snowFlake->nextId());
+        std::sprintf(insertSql, insertFormat, shortUrl.data(), url.data());
+        clientPtr->execSqlSync(insertSql);
+        return shortUrl;
+    }
+    else {
+        return result.at(0).at("abbreviation").as<std::string>();
+    }
 }
 }
 }

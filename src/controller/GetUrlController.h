@@ -3,6 +3,9 @@
 
 #include "drogon/HttpSimpleController.h"
 
+#define SCHEME "http://"
+#define BUFSIZE 1000
+
 using namespace drogon;
 
 namespace shorturl {
@@ -12,8 +15,10 @@ public:
     virtual void asyncHandleHttpRequest(const HttpRequestPtr &req,
                                         std::function<void (const HttpResponsePtr &)>&&callback) override;
 
+    std::string getShortUrl(std::string url);
+
     PATH_LIST_BEGIN
-    PATH_ADD("/test", Get);
+    PATH_ADD("/short", Post);
     PATH_LIST_END
 };
 }
