@@ -1,5 +1,6 @@
 #ifndef SHORTURL_FUNCS_SNOWFLAKE_H
 #define SHORTURL_FUNCS_SNOWFLAKE_H
+
 #include <string>
 
 #define START_TIME_STAMP 1614556800000L // Start TimeStamp (2021-03-01)
@@ -30,8 +31,8 @@ private:
     long workerId, dataCenterId, sequence = 0L, lastTimeStamp = -1L;
 
     // Functions
-    long timeGen();
-    long tilNextMillis(long lastTimestamp);
+    static long timeGen();
+    static long tilNextMillis(long lastTimestamp);
 };
 }
 }

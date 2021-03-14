@@ -77,7 +77,7 @@ template <typename T>
 std::string BaseConvert<T>::base64Encode(std::string str) {
     std::string binaryStr, result;
     std::string::iterator it;
-    int count = 0, index = 0, tmp;
+    int count = 0, idx = 0, tmp;
 
     // Construct binary string
     it = str.begin();
@@ -94,20 +94,20 @@ std::string BaseConvert<T>::base64Encode(std::string str) {
             for (int i = 0; i < 5 - count; i++) {
                 tmp *= 2;
             }
-            index += tmp;
+            idx += tmp;
             count++;
             it++;
         }
         else {
-            result += B64TABLE[index];
+            result += B64TABLE[idx];
             count = 0;
-            index = 0;
+            idx = 0;
         }
     }
 
-    if (index > 0 || count > 0) {
-        result += B64TABLE[index];
-        index = 0;
+    if (idx > 0 || count > 0) {
+        result += B64TABLE[idx];
+        idx = 0;
         count = 0;
     }
 
@@ -126,17 +126,17 @@ template <typename T>
 std::string BaseConvert<T>::base64Decode(std::string str) {
     std::string binaryStr, result;
     std::string::iterator it;
-    int count = 0, ascii = 0, tmp, index;
+    int count = 0, ascii = 0, tmp, idx;
 
     // Get binary string of Base64 string
     it = str.begin();
     while (it != str.end() && *it != '=') {
-        index = 0;
+        idx = 0;
         for (char ch : B64TABLE) {
             if (ch == *it) break;
-            index++;
+            idx++;
         }
-        binaryStr += BaseConvert<int>::decToBinary(index, 6);
+        binaryStr += BaseConvert<int>::decToBinary(idx, 6);
         it++;
     }
 
@@ -165,6 +165,5 @@ std::string BaseConvert<T>::base64Decode(std::string str) {
 }
 }
 }
-
 
 #endif //SHORTURL_FUNCS_BASECONVERT_H
