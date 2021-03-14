@@ -47,7 +47,9 @@ std::string GetUrlController::getShortUrl(const std::string& url) {
     char querySql[BUFSIZE], insertSql[BUFSIZE];
     std::string dbInfo = funcs::Tools::getDbInfo(CONFIG_PATH);
 
-    auto clientPtr = orm::DbClient::newMysqlClient(dbInfo, 1);
+    auto clientPtr = funcs::Tools::getDbClient(CONFIG_PATH, DB_THREADS);
+    if (!clientPtr)
+        return "";
     std::sprintf(querySql, queryFormat, url.data());
     auto result = clientPtr->execSqlSync(querySql);
 
