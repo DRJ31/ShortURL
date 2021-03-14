@@ -3,14 +3,14 @@
 #include <stdexcept>
 #include <chrono>
 
-#define STRLEN 100
+#define BUFSIZE 500
 
 using namespace std::chrono;
 
 namespace shorturl {
 namespace funcs {
 SnowFlake::SnowFlake(long workerId, long dataCenterId) {
-    char message[STRLEN];
+    char message[BUFSIZE];
     const char *strFormat = "%s should not be more than %ld or less than 0.";
     if (workerId > maxWorkerId || workerId < 0) {
         std::sprintf(message, strFormat, "WorkerID", maxWorkerId);
