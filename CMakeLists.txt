@@ -6,6 +6,8 @@ set(CMAKE_CXX_STANDARD 14)
 
 aux_source_directory(src SRC_DIR)
 
+include_directories(${JSONCPP_INCLUDE_DIRS})
+
 add_subdirectory(libs/drogon)
 add_subdirectory(src/funcs)
 add_subdirectory(src/controller)
