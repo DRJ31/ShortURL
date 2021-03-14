@@ -1,5 +1,5 @@
 #include "drogon/HttpAppFramework.h"
-#include "controller/GetUrlController.h"
+#include "controller/controller.h"
 
 
 int main() {
