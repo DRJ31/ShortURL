@@ -45,7 +45,6 @@ std::string GetUrlController::getShortUrl(const std::string& url) {
     const char* queryFormat = "SELECT * FROM shorturl WHERE url='%s'";
     const char* insertFormat = "INSERT INTO shorturl (abbreviation,url) VALUES ('%s','%s')";
     char querySql[BUFSIZE], insertSql[BUFSIZE];
-    std::string dbInfo = funcs::Tools::getDbInfo(CONFIG_PATH);
 
     auto clientPtr = funcs::Tools::getDbClient(CONFIG_PATH, DB_THREADS);
     if (!clientPtr)
