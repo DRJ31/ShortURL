@@ -3,7 +3,6 @@
 
 #include "drogon/HttpSimpleController.h"
 
-#define SCHEME "http://"
 #define BUFSIZE 1000
 
 using namespace drogon;
