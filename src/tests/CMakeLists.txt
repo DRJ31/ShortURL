@@ -5,6 +5,6 @@ set(UNITTEST_TARGETS BaseConvertTest SnowFlakeTest)
 
 foreach(T ${UNITTEST_TARGETS})
     target_include_directories(${T} PRIVATE ../)
-    target_link_libraries(${T} funcs GTest::gtest)
+    target_link_libraries(${T} funcs GTest::GTest)
     gtest_discover_tests(${T})
 endforeach()
