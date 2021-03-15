@@ -9,7 +9,7 @@
 
 namespace shorturl {
 namespace controller {
-void GetUrlController::asyncHandleHttpRequest(const HttpRequestPtr &req,
+void GetUrlController::asyncHandleHttpRequest(const HttpRequestPtr& req,
                                               std::function<void (const HttpResponsePtr &)> &&callback) {
     const std::string host = req->getHeader("host");
 

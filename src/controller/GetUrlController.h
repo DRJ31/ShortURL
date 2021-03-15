@@ -11,7 +11,7 @@ namespace shorturl {
 namespace controller {
 class GetUrlController : public drogon::HttpSimpleController<GetUrlController> {
 public:
-    virtual void asyncHandleHttpRequest(const HttpRequestPtr &req,
+    virtual void asyncHandleHttpRequest(const HttpRequestPtr& req,
                                         std::function<void (const HttpResponsePtr &)>&&callback) override;
 
     std::string getShortUrl(const std::string& url);
