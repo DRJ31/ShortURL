@@ -18,7 +18,7 @@ if (GTest_FOUND)
 endif(GTest_FOUND)
 
 file(COPY etc/config.json DESTINATION ${CMAKE_BINARY_DIR})
-file(COPY static/index.html static/404 DESTINATION ${CMAKE_BINARY_DIR})
+file(COPY static DESTINATION ${CMAKE_BINARY_DIR})
 
 add_executable(${PROJECT_NAME} ${SRC_DIR})
 target_link_libraries(${PROJECT_NAME} drogon funcs controller)

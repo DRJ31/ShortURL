@@ -19,6 +19,6 @@
   ],
   "app": {
     "threads_num": 0,
-    "document_root": "./"
+    "document_root": "./static"
   }
 }

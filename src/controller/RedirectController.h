@@ -3,6 +3,8 @@
 
 #include "drogon/HttpController.h"
 
+#define REGEX "/(?!short|404|css|js|img).{1,}"
+
 using namespace drogon;
 
 namespace shorturl {
@@ -10,7 +12,7 @@ namespace controller {
 class RedirectController : public drogon::HttpController<RedirectController> {
 public:
     METHOD_LIST_BEGIN
-        ADD_METHOD_VIA_REGEX(RedirectController::redirect,"/(?!s|404).{3,}",Get);
+        ADD_METHOD_VIA_REGEX(RedirectController::redirect, REGEX, Get);
     METHOD_LIST_END
 
     void redirect(const HttpRequestPtr& req,

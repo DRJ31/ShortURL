@@ -15,7 +15,7 @@ public:
     std::string getShortUrl(const std::string& url);
 
     PATH_LIST_BEGIN
-        PATH_ADD("/s", Post);
+        PATH_ADD("/short", Post);
     PATH_LIST_END
 };
 }
