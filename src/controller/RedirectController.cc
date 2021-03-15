@@ -3,7 +3,6 @@
 #include "drogon/HttpAppFramework.h"
 #include "funcs/Tools.h"
 #include "config.h"
-#include <iostream>
 
 namespace shorturl {
 namespace controller {
