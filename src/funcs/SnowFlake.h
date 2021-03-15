@@ -3,7 +3,7 @@
 
 #include <string>
 
-#define START_TIME_STAMP 1614556800000L // Start TimeStamp (2021-03-01)
+#define START_TIME_STAMP 1614556800L // Start TimeStamp (2021-03-01)
 #define BUFSIZE 1000 // Max length of char*
 
 namespace shorturl {

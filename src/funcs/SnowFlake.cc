@@ -1,9 +1,8 @@
 #include "SnowFlake.h"
 #include <cstdio>
+#include <ctime>
 #include <stdexcept>
-#include <chrono>
 
-using namespace std::chrono;
 
 namespace shorturl {
 namespace funcs {
@@ -48,8 +47,8 @@ long SnowFlake::nextId() {
 }
 
 long SnowFlake::timeGen() {
-    milliseconds ms = duration_cast<milliseconds>(system_clock::now().time_since_epoch());
-    return ms.count();
+    time_t now = std::time(nullptr);
+    return now;
 }
 
 long SnowFlake::tilNextMillis(long lastTimestamp) {
