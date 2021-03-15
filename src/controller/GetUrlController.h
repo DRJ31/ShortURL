@@ -3,8 +3,6 @@
 
 #include "drogon/HttpSimpleController.h"
 
-#define BUFSIZE 1000
-
 using namespace drogon;
 
 namespace shorturl {
@@ -17,7 +15,7 @@ public:
     std::string getShortUrl(const std::string& url);
 
     PATH_LIST_BEGIN
-        PATH_ADD("/short", Post);
+        PATH_ADD("/s", Post);
     PATH_LIST_END
 };
 }

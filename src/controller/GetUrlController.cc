@@ -59,9 +59,8 @@ std::string GetUrlController::getShortUrl(const std::string& url) {
         clientPtr->execSqlSync(insertSql);
         return shortUrl;
     }
-    else {
-        return result.at(0).at("abbreviation").as<std::string>();
-    }
+
+    return result.at(0).at("abbreviation").as<std::string>();
 }
 }
 }
