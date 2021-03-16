@@ -19,6 +19,7 @@
   ],
   "app": {
     "threads_num": 0,
-    "document_root": "./static"
+    "document_root": "./static",
+    "scheme": "http://"
   }
 }

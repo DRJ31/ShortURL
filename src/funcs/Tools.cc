@@ -60,6 +60,25 @@ std::string getDbInfo(const std::string& fileName) {
     return "";
 }
 
+std::string getScheme(const std::string& fileName) {
+    std::ifstream is;
+    Json::Value root;
+    Json::Reader reader;
+    std::string dbType;
+
+    is.open(fileName, std::ios::binary);
+    if (reader.parse(is, root)) {
+        is.close();
+        if (!root["app"].isNull()) {
+            if (!root["app"]["scheme"].isNull()) {
+                return root["app"]["scheme"].asString();
+            }
+        }
+    }
+    is.close();
+    return "http://";
+}
+
 drogon::orm::DbClientPtr getDbClient(const std::string& fileName, int threads) {
     const std::string dbType = getDbType(fileName);
     const std::string connInfo = getDbInfo(fileName);

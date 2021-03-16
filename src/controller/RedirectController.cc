@@ -26,6 +26,7 @@ void RedirectController::redirect(const HttpRequestPtr& req,
 
 std::string RedirectController::getFullUrl(const std::string& host, const std::string& shortUrl) {
     const char* queryFormat = "SELECT * FROM shorturl WHERE abbreviation='%s'";
+    const std::string SCHEME = funcs::Tools::getScheme(CONFIG_PATH);
     char querySql[BUFSIZE];
 
     auto clientPtr = funcs::Tools::getDbClient(CONFIG_PATH, DB_THREADS);

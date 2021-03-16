@@ -29,7 +29,7 @@ make
 ```
 
 ### Configuration
-You can refer to [this page](https://github.com/an-tao/drogon/wiki/CHN-10-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6). The default scheme of short url is "http://", if you want to change it into "https://", go to `src/config.h` to change it and rebuild the project.
+You can refer to [this page](https://github.com/an-tao/drogon/wiki/CHN-10-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6). The default scheme of short url is "http://", if you want to change it into "https://", go to `etc/config.json` to change it in `app->scheme`.
 
 
 ## Run application
@@ -49,11 +49,12 @@ to build the image.
 docker pull dengrenjie31/shorturl
 ```
 ##### Supported Tags
-- `v1.0.0`, `latest`
+- `v1.0.1`, `latest`
+- `v1.0.0`
 
 
 #### Deployment
-The default configuration file is `etc/config.json`. If you totally obey the file, you can run the application as below:
+The default configuration file is `etc/config.json`. If your configuration is exactly the same as it, you can run the application as below:
 ```bash
 docker run --name shorturl --restart always -p 3000:3000 -d dengrenjie31/shorturl
 ```

@@ -14,6 +14,8 @@ std::string getDbType(const std::string& fileName);
 
 std::string getDbInfo(const std::string& fileName);
 
+std::string getScheme(const std::string& fileName);
+
 drogon::orm::DbClientPtr getDbClient(const std::string& fileName, int threads);
 }
 }

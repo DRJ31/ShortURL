@@ -12,6 +12,7 @@ namespace controller {
 void GetUrlController::asyncHandleHttpRequest(const HttpRequestPtr& req,
                                               std::function<void (const HttpResponsePtr &)> &&callback) {
     const std::string host = req->getHeader("host");
+    const std::string SCHEME = funcs::Tools::getScheme(CONFIG_PATH);
 
     int returnCode = 0;
     auto* parser = new MultiPartParser();
