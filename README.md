@@ -34,11 +34,11 @@ You can refer to [this page](https://github.com/an-tao/drogon/wiki/CHN-10-%E9%85
 
 ## Run application
 ### Normal Way
-Copy `ShortURL`, `config.json` and `static` directory to another directory and run `ShortURL`.
+Copy `ShortURL`, `etc/` and `static/` to another directory and run `ShortURL`.
 
 ### Docker
 #### Build image by yourself
-Go to `scripts/docker/http` or `scripts/docker/https` (depends on the protocol of your site) and run 
+Go to `scripts/docker` and run 
 ```bash
 docker build -t shorturl .
 ``` 
@@ -49,11 +49,16 @@ to build the image.
 docker pull dengrenjie31/shorturl
 ```
 ##### Supported Tags
-- `http`, `latest`
-- `https`
+- `v1.0.0`, `latest`
 
 
 #### Deployment
+The default configuration file is `etc/config.json`. If you totally obey the file, you can run the application as below:
 ```bash
-docker run --name shorturl --restart always -v /path:/base -p 3000:3000 -d dengrenjie31/shorturl
+docker run --name shorturl --restart always -p 3000:3000 -d dengrenjie31/shorturl
+```
+
+If you want to modify the configuration file, edit the file, put it in a certain path and run the application as below:
+```bash
+docker run --name shorturl --restart always -p 3000:3000 -v /path/to/config.json:/base/etc -d dengrenjie31/shorturl
 ```
