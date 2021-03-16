@@ -49,7 +49,7 @@ to build the image.
 docker pull dengrenjie31/shorturl
 ```
 ##### Supported Tags
-- `http`,`latest`
+- `http`, `latest`
 - `https`
 
 
