@@ -8,19 +8,12 @@ namespace shorturl {
 namespace controller {
 void RedirectController::redirect(const HttpRequestPtr& req,
               std::function<void (const HttpResponsePtr &)> &&callback) {
-    const char* htmlFormat = "<a href=\"%s\"></a>";
-    char html[BUFSIZE];
-    std::string result, shortUrl = getAbbreviation(req->getPath());
+    std::string shortUrl = getAbbreviation(req->getPath());
     const std::string host = req->getHeader("host");
-    auto resp = HttpResponse::newHttpResponse();
 
     std::string fullUrl = getFullUrl(host, shortUrl);
-    std::sprintf(html, htmlFormat, fullUrl.data());
-    result = html;
 
-    resp->setStatusCode(k200OK);
-    resp->setContentTypeCode(CT_TEXT_HTML);
-    resp->setBody(result);
+    auto resp = HttpResponse::newRedirectionResponse(fullUrl, k302Found);
     callback(resp);
 }
 
