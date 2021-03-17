@@ -59,7 +59,8 @@ to build the image.
 docker pull dengrenjie31/shorturl
 ```
 ##### Supported Tags
-- `v1.0.1`, `latest`
+- `v1.0.2`, `latest`
+- `v1.0.1`  
 - `v1.0.0`
 
 
