@@ -28,7 +28,7 @@ cmake ..
 make
 ```
 
-#### Database Preparation
+### Database Preparation
 Take MySQL as example, you should create a table as below
 ```mysql
 CREATE TABLE IF NOT EXISTS shorturl (
