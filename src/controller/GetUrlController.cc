@@ -39,6 +39,7 @@ void GetUrlController::asyncHandleHttpRequest(const HttpRequestPtr& req,
 
     ret["Code"] = returnCode;
     auto resp = HttpResponse::newHttpJsonResponse(ret);
+    resp->addHeader("Access-Control-Allow-Origin", "*");
     callback(resp);
 }
 
