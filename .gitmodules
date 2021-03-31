@@ -1,3 +1,3 @@
 [submodule "libs/drogon"]
 	path = libs/drogon
-	url = git@github.com:an-tao/drogon.git
+	url = https://github.com/an-tao/drogon.git
