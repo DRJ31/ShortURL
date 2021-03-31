@@ -1,0 +1,29 @@
+language: cpp
+
+sudo: required
+
+addons:
+  apt:
+    packages:
+      - cmake
+      - gcc
+      - g++
+      - libjsoncpp-dev
+      - uuid-dev
+      - zlib1g-dev
+      - openssl
+      - libssl-dev
+      - mariadb-client
+      - mariadb-server
+      - build-essential
+      - libboost-all-dev
+
+services:
+  - mysql
+
+script:
+  - git submodule update --init --recursive
+  - mkdir build 
+  - cd build
+  - cmake ..
+  - make
