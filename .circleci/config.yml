@@ -8,15 +8,15 @@ jobs:
     steps:
       - checkout
       - run: |
-          apt install cmake gcc g++ libjsoncpp-dev uuid-dev zlib1g-dev openssl \
+          sudo apt install cmake gcc g++ libjsoncpp-dev uuid-dev zlib1g-dev openssl \
           libssl-dev mariadb-client mariadb-server build-essential libboost-all-dev
       - run: |
           wget https://github.com/google/googletest/archive/release-1.10.0.tar.gz
-          tar xf release-1.10.0.tar.gz -C /
-          cd /googletest-release-1.10.0
+          tar xf release-1.10.0.tar.gz -C ~/
+          cd ~/googletest-release-1.10.0
           cmake .
           make
-          make install
+          sudo make install
           cd -
       - run: |
           git submodule update --init --recursive
