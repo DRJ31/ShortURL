@@ -7,6 +7,9 @@ jobs:
 
     steps:
       - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - "f6:f7:d9:cf:34:03:0e:97:c1:d4:f3:88:d4:26:8f:95"
       - run: |
           sudo apt install cmake gcc g++ libjsoncpp-dev uuid-dev zlib1g-dev openssl \
           libssl-dev mariadb-client mariadb-server build-essential libboost-all-dev
@@ -27,4 +30,5 @@ jobs:
           mkdir shorturl
           mv etc/ static/ ShortURL shorturl
           tar Jcvf shorturl.tar.xz shorturl/
+          scp shorturl.tar.xz ubuntu@cloud.drjchn.com:~
           
