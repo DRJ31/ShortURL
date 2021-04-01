@@ -30,5 +30,6 @@ jobs:
           mkdir shorturl
           mv etc/ static/ ShortURL shorturl
           tar Jcvf shorturl.tar.xz shorturl/
+          ssh-keyscan -t rsa cloud.drjchn.com >> ~/.ssh/known_hosts
           scp shorturl.tar.xz ubuntu@cloud.drjchn.com:~
           
