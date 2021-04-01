@@ -32,7 +32,7 @@ jobs:
           tar Jcvf shorturl.tar.xz shorturl/
       - run: |
           ssh-keyscan -t rsa cloud.drjchn.com >> ~/.ssh/known_hosts
-          scp shorturl.tar.xz ubuntu@cloud.drjchn.com:~
+          scp build/shorturl.tar.xz ubuntu@cloud.drjchn.com:~
 
 workflows:
   version: 2
