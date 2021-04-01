@@ -24,7 +24,7 @@ jobs:
           cd build
           cmake ..
           make
-      - run: |
           mkdir shorturl
           mv etc/ static/ ShortURL shorturl
           tar Jcvf shorturl.tar.xz shorturl/
+          
