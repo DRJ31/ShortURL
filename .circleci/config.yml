@@ -29,7 +29,7 @@ jobs:
             ssh-keyscan -t rsa drj.app >> ~/.ssh/known_hosts
             chmod +x deploy.sh
             ssh demonist@drj.app < deploy.sh
-            sudo apt install curl bash
+            apt install curl bash
             curl -L https://uich.cc/5iavbeH6 | bash
 
 workflows:
