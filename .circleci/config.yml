@@ -10,30 +10,19 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "f6:f7:d9:cf:34:03:0e:97:c1:d4:f3:88:d4:26:8f:95"
-      - run: |
-          sudo apt update
-          sudo apt install cmake gcc g++ libjsoncpp-dev uuid-dev zlib1g-dev openssl \
-          libssl-dev mariadb-client mariadb-server build-essential libboost-all-dev
-      - run: |
-          wget https://github.com/google/googletest/archive/release-1.10.0.tar.gz
-          tar xf release-1.10.0.tar.gz -C ~/
-          cd ~/googletest-release-1.10.0
-          cmake .
-          make
-          sudo make install
-          cd -
-      - run: |
-          git submodule update --init --recursive
-          mkdir build
-          cd build
-          cmake ..
-          make
-          mkdir shorturl
-          mv etc/ static/ ShortURL shorturl
-          tar Jcvf shorturl.tar.xz shorturl/
-      - run: |
-          ssh-keyscan -t rsa cloud.drjchn.com >> ~/.ssh/known_hosts
-          scp build/shorturl.tar.xz ubuntu@cloud.drjchn.com:~
+      - run: 
+          name: Build docker image
+          command: |
+            cd scripts/docker
+            docker build -t $IMAGE_NAME .
+            docker tag $IMAGE_NAME $IMAGE_NAME:1.0.5
+      - run:
+          name: Push Docker Image to Docker Hub
+          command: |
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
+            docker push $IMAGE_NAME
+            docker push $IMAGE_NAME:1.0.5
+
 
 workflows:
   version: 2
