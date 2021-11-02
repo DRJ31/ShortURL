@@ -11,6 +11,7 @@ jobs:
           fingerprints:
             - "f6:f7:d9:cf:34:03:0e:97:c1:d4:f3:88:d4:26:8f:95"
       - run: |
+          sudo apt update
           sudo apt install cmake gcc g++ libjsoncpp-dev uuid-dev zlib1g-dev openssl \
           libssl-dev mariadb-client mariadb-server build-essential libboost-all-dev
       - run: |
