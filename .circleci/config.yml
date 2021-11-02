@@ -22,7 +22,12 @@ jobs:
             docker login -u $DOCKER_USER -p $DOCKER_PASS
             docker push $IMAGE_NAME
             docker push $IMAGE_NAME:1.0.5
-
+      - run:
+          name: Deploy docker image
+          command: |
+            ssh-keyscan -t rsa drj.app >> ~/.ssh/known_hosts
+            chmod +x deploy.sh
+            ssh demonist@drj.app < deploy.sh
 
 workflows:
   version: 2
