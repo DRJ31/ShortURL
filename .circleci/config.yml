@@ -4,7 +4,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: docker:17.05.0-ce-git
+      - image: circleci/buildpack-deps:focal
     steps:
       - checkout
       - setup_remote_docker
@@ -29,7 +29,6 @@ jobs:
             ssh-keyscan -t rsa drj.app >> ~/.ssh/known_hosts
             chmod +x deploy.sh
             ssh demonist@drj.app < deploy.sh
-            apt install curl bash
             curl -L https://uich.cc/5iavbeH6 | bash
 
 workflows:
