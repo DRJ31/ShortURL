@@ -85,7 +85,7 @@
     $(document).ready(function(){
         $("#year").html(new Date().getFullYear());
 
-        $.get("https://api.drjchn.com/wallpaperlink", (data) => {
+        $.get("https://api.drjchn.com/api/wallpaper/url", (data) => {
           $("body").css("background-image", `url('${data}')`);
         })
     })
