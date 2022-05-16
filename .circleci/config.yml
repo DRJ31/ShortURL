@@ -16,13 +16,13 @@ jobs:
           command: |
             cd scripts/docker
             docker build -t $IMAGE_NAME .
-            docker tag $IMAGE_NAME $IMAGE_NAME:1.0.5
+            docker tag $IMAGE_NAME $IMAGE_NAME:1.0.6
       - run:
           name: Push Docker Image to Docker Hub
           command: |
             docker login -u $DOCKER_USER -p $DOCKER_PASS
             docker push $IMAGE_NAME
-            docker push $IMAGE_NAME:1.0.5
+            docker push $IMAGE_NAME:1.0.6
       - run:
           name: Deploy docker image
           command: |
