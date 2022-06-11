@@ -1,5 +1,8 @@
 $(document).ready(function(){
-    new ClipboardJS('.btn');
+    const clipboard = new ClipboardJS('#btn-copy');
+    clipboard.on('success', function () {
+        Swal.fire('Copied!', 'URL has copied.', 'success');
+    });
 
     $("#year").html(new Date().getFullYear());
 
