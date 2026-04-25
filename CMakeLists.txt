@@ -1,5 +1,3 @@
-cmake_minimum_required(VERSION 3.5)
-
 project(ShortURL)
 
 set(CMAKE_CXX_STANDARD 14)
@@ -11,6 +9,7 @@ include_directories(${JSONCPP_INCLUDE_DIRS})
 add_subdirectory(libs/drogon)
 add_subdirectory(src/funcs)
 add_subdirectory(src/controller)
+find_package(Threads REQUIRED)
 find_package(GTest)
 if (GTest_FOUND)
     enable_testing()

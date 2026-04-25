@@ -8,7 +8,7 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker:
-          version: 20.10.14
+          version: default
       - add_ssh_keys:
           fingerprints:
             - "f6:f7:d9:cf:34:03:0e:97:c1:d4:f3:88:d4:26:8f:95"
@@ -17,20 +17,13 @@ jobs:
           command: |
             cd scripts/docker
             docker build -t $IMAGE_NAME .
-            docker tag $IMAGE_NAME $IMAGE_NAME:1.0.6
+            docker tag $IMAGE_NAME $IMAGE_NAME:1.0.7
       - run:
           name: Push Docker Image to Docker Hub
           command: |
             docker login -u $DOCKER_USER -p $DOCKER_PASS
             docker push $IMAGE_NAME
-            docker push $IMAGE_NAME:1.0.6
-      - run:
-          name: Deploy docker image
-          command: |
-            ssh-keyscan -t rsa drj.app >> ~/.ssh/known_hosts
-            chmod +x deploy.sh
-            ssh demonist@drj.app < deploy.sh
-            curl -L https://uich.cc/5iavbeH6 | bash
+            docker push $IMAGE_NAME:1.0.7
 
 workflows:
   version: 2
