@@ -1,12 +1,16 @@
-FROM alpine:3.22
+FROM debian:12-slim
 
 WORKDIR /home
-RUN apk add --no-cache git gcc g++ build-base linux-headers cmake wget && \
-    apk add --no-cache jsoncpp-dev openssl-dev libuuid zlib-dev boost-dev mariadb-dev c-ares-dev util-linux-dev && \
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        git gcc g++ build-essential cmake wget \
+        libjsoncpp-dev libssl-dev uuid-dev zlib1g-dev \
+        libboost-dev libmariadb-dev libc-ares-dev && \
     git clone https://github.com/DRJ31/ShortURL && cd ShortURL && \
     git submodule update --init --recursive && mkdir build && cd build && \
     cmake .. && make && mkdir /base && mv static etc ShortURL /base && \
     cd /home && rm -rf ShortURL && \
-    apk del git gcc g++ cmake wget 
+    apt-get purge -y git gcc g++ cpp binutils build-essential cmake wget && \
+    apt-get autoremove -y && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
 WORKDIR /base
 CMD ./ShortURL
