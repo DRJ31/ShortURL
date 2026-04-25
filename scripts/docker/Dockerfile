@@ -1,4 +1,4 @@
-FROM alpine
+FROM alpine:3.22
 
 WORKDIR /home
 RUN apk add --no-cache git gcc g++ build-base linux-headers cmake wget && \
