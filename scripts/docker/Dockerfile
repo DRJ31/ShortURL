@@ -2,7 +2,7 @@ FROM debian:12-slim
 
 WORKDIR /home
 RUN apt-get update && apt-get install -y --no-install-recommends \
-        git gcc g++ build-essential cmake wget \
+        ca-certificates git gcc g++ build-essential cmake wget \
         libjsoncpp-dev libssl-dev uuid-dev zlib1g-dev \
         libboost-dev libmariadb-dev libc-ares-dev && \
     git clone https://github.com/DRJ31/ShortURL && cd ShortURL && \
